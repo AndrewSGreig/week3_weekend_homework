@@ -73,6 +73,9 @@ ticket3.save
 customer2.funds = 25
 customer2.update
 
+customer1.buy_tickets_remove_cash(film2)
+customer1.update
+
 # binding.pry
 # customer3.delete()###########
 

@@ -44,9 +44,9 @@ class Film
 
   def customers()
     sql = "SELECT * FROM customers
-        INNER JOIN tickets
-        ON tickets.customer_id = customers.id
-        WHERE film_id = $1;"
+    INNER JOIN tickets
+    ON tickets.customer_id = customers.id
+    WHERE film_id = $1;"
     values = [@id]
     result = SqlRunner.run(sql, values)
     return result.map{|customer| Customer.new(customer)}
@@ -54,14 +54,7 @@ class Film
 
   def count_tickets_sold_for_film()
     #Check how many customers are going to watch a certain film
-    sql = "SELECT * FROM customers
-        INNER JOIN tickets
-        ON tickets.customer_id = customers.id
-        WHERE film_id = $1;"
-    values = [@id]
-    result = SqlRunner.run(sql, values)
-    # return
-    tickets = result.map{|customer| Customer.new(customer)}
+    tickets = customers()
     return tickets.count
   end
 end

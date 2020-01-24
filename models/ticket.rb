@@ -14,7 +14,6 @@ class Ticket
     values = [@customer_id, @film_id]
     tickets = SqlRunner.run(sql, values).first
     @id = tickets['id'].to_i
-
   end
 
   def update()

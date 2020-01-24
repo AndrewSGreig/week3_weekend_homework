@@ -26,9 +26,9 @@ class Customer
 
   def films()
     sql = "SELECT * FROM films
-        INNER JOIN tickets
-        ON tickets.film_id = films.id
-        WHERE customer_id = $1;"
+    INNER JOIN tickets
+    ON tickets.film_id = films.id
+    WHERE customer_id = $1;"
     values = [@id]
     result = SqlRunner.run(sql, values)
     return result.map{|film| Film.new(film)}
@@ -40,13 +40,7 @@ class Customer
   end
 
   def tickets_bought_by_customer()
-    sql = "SELECT * FROM films
-        INNER JOIN tickets
-        ON tickets.film_id = films.id
-        WHERE customer_id = $1;"
-    values = [@id]
-    result = SqlRunner.run(sql, values)
-    tickets =result.map{|film| Film.new(film)}
+    tickets = films()
     return tickets.count;
   end
 

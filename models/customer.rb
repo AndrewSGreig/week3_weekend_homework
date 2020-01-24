@@ -39,6 +39,17 @@ class Customer
     Ticket.new({'customer_id' => @id, 'film_id' => film.id})
   end
 
+  def tickets_bought_by_customer()
+    sql = "SELECT * FROM films
+        INNER JOIN tickets
+        ON tickets.film_id = films.id
+        WHERE customer_id = $1;"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    tickets =result.map{|film| Film.new(film)}
+    return tickets.count;
+  end
+
   def delete()
     sql = "DELETE FROM customers WHERE id = $1"
     values = [@id]

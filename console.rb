@@ -68,16 +68,21 @@ ticket3 = Ticket.new({
   })
 ticket3.save
 
-
-
 customer2.funds = 25
 customer2.update
 
 customer1.buy_tickets_remove_cash(film2)
 customer1.update
 
+
+customer_ticket_count = customer2.tickets_bought_by_customer
+p customer_ticket_count
+
+tickets_sold_for_film = film2.count_tickets_sold_for_film
+p tickets_sold_for_film
+
 # binding.pry
-# customer3.delete()###########
+ customer3.delete()
 
 binding.pry
 nil

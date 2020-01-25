@@ -1,12 +1,17 @@
 require_relative('models/customer.rb')
 require_relative('models/film.rb')
 require_relative('models/ticket.rb')
+require_relative('models/screening.rb')
 
 require('pry-byebug')
 
 Customer.delete_all()
 Film.delete_all()
 Ticket.delete_all()
+# Screenings.delete_all()
+
+#######################################
+#DATA CREATION
 
 customer1 = Customer.new({
   'name' => 'John Doe',
@@ -77,7 +82,28 @@ ticket4 = Ticket.new({
   'customer_id' => customer4.id,
   'film_id' => film2.id
   })
-  ticket4.save
+ticket4.save
+
+screening1 = Screening.new({
+  'film_id' => film1.id,
+  'time' => "18:15"
+  })
+screening1.save
+
+screening2 = Screening.new({
+  'film_id' => film1.id,
+  'time' => "20:05"
+  })
+screening2.save
+
+screening3 = Screening.new({
+  'film_id' => film2.id,
+  'time' => "19:35"
+  })
+screening3.save
+
+#######################################
+#DATA MODIFICATION
 
 customer2.funds = 25
 customer2.update
@@ -92,6 +118,11 @@ p customer_ticket_count
 tickets_sold_for_film = film2.count_tickets_sold_for_film
 p tickets_sold_for_film
 
+screenings_of_film = film1.film_screenings
+p screenings_of_film
+
+#######################################
+#DATA DELETION
 customer3.delete()
 
 binding.pry

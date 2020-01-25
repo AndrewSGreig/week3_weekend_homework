@@ -57,4 +57,13 @@ class Film
     tickets = customers()
     return tickets.count
   end
+
+  def film_screenings()
+    #return the screenings listed for film
+    sql = "SELECT * FROM screenings WHERE film_id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    return result.map{|screening| Screening.new(screening)};
+  end
+
 end

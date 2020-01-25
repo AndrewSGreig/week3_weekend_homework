@@ -55,55 +55,62 @@ film3 = Film.new({
   })
 film3.save();
 
-film2.title = "Godfather II"
-film2.update
-
-film3.delete()
-
-ticket1 = Ticket.new({
-  'customer_id' => customer1.id,
-  'film_id' => film1.id
-  })
-ticket1.save
-
-ticket2 = Ticket.new({
-  'customer_id' => customer2.id,
-  'film_id' => film2.id
-  })
-ticket2.save
-
-ticket3 = Ticket.new({
-  'customer_id' => customer1.id,
-  'film_id' => film2.id
-  })
-ticket3.save
-
-ticket4 = Ticket.new({
-  'customer_id' => customer4.id,
-  'film_id' => film2.id
-  })
-ticket4.save
 
 screening1 = Screening.new({
   'film_id' => film1.id,
-  'time' => "18:15"
+  'screening_time' => '18:15'
   })
 screening1.save
 
 screening2 = Screening.new({
   'film_id' => film1.id,
-  'time' => "20:05"
+  'screening_time' => '20:05'
   })
 screening2.save
 
 screening3 = Screening.new({
   'film_id' => film2.id,
-  'time' => "19:35"
+  'screening_time' => '19:35'
   })
 screening3.save
 
+
+ticket1 = Ticket.new({
+  'customer_id' => customer1.id,
+  'film_id' => film1.id,
+  'screening_id' => screening2.id
+  })
+ticket1.save
+
+ticket2 = Ticket.new({
+  'customer_id' => customer2.id,
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
+  })
+ticket2.save
+
+ticket3 = Ticket.new({
+  'customer_id' => customer1.id,
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
+  })
+ticket3.save
+
+ticket4 = Ticket.new({
+  'customer_id' => customer4.id,
+  'film_id' => film2.id,
+  'screening_id' => screening3.id
+  })
+ticket4.save
+
+
 #######################################
 #DATA MODIFICATION
+
+film2.title = "Godfather II"
+film2.update
+
+film3.delete()
 
 customer2.funds = 25
 customer2.update
@@ -111,15 +118,24 @@ customer2.update
 customer1.buy_tickets_remove_cash(film2)
 customer1.update
 
+######################################
+#DATA READING
 
 customer_ticket_count = customer2.tickets_bought_by_customer
-p customer_ticket_count
+# p customer_ticket_count
 
 tickets_sold_for_film = film2.count_tickets_sold_for_film
-p tickets_sold_for_film
+# p tickets_sold_for_film
 
 screenings_of_film = film1.film_screenings
-p screenings_of_film
+# p screenings_of_film
+
+p "screening1 tickets  #{screening1.tickets_sold_for_screening()}"
+p "screening2 tickets  #{screening2.tickets_sold_for_screening()}"
+p "screening3 tickets  #{screening3.tickets_sold_for_screening()}"
+# p screening3.count_tickets_sold_for_each_screening()
+
+
 
 #######################################
 #DATA DELETION

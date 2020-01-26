@@ -35,13 +35,22 @@ class Screening
 
   def tickets_sold_for_screening()
     #return the number of tickets for screening
+    # p "@screening.id = #{@screening.id}"
+    # p "@screening = #{@screening}"
+    # p "@screening_id = #{@screening_id}"
+    # p "screening.id = #{screening.id}"
+    # p "screening = #{screening}"
+    # p "id = #{id}"
 
+# binding.pry
     screening_id = @screening_id
     sql = "SELECT COUNT(screening_id) FROM tickets WHERE screening_id = $1;"
 
-    values = [@screening_id]
-    result = SqlRunner.run(sql, values)
-    return result.count;
+    values = [id]
+    result = SqlRunner.run(sql, values).first
+    # p "results= #{result}";
+    # p "result.length #{result.length}"
+    return result#.length;
   end
 
   ### count the number of tickets sold for each screening

@@ -90,16 +90,16 @@ ticket2 = Ticket.new({
 ticket2.save
 
 ticket3 = Ticket.new({
-  'customer_id' => customer1.id,
+  'customer_id' => customer2.id,
   'film_id' => film2.id,
-  'screening_id' => screening3.id
+  'screening_id' => screening2.id
   })
 ticket3.save
 
 ticket4 = Ticket.new({
   'customer_id' => customer4.id,
   'film_id' => film2.id,
-  'screening_id' => screening3.id
+  'screening_id' => screening2.id
   })
 ticket4.save
 
@@ -130,10 +130,16 @@ tickets_sold_for_film = film2.count_tickets_sold_for_film
 screenings_of_film = film1.film_screenings
 # p screenings_of_film
 
-p "screening1 tickets  #{screening1.tickets_sold_for_screening()}"
-p "screening2 tickets  #{screening2.tickets_sold_for_screening()}"
-p "screening3 tickets  #{screening3.tickets_sold_for_screening()}"
+# p "screening1 tickets  #{screening1.tickets_sold_for_screening()}"
+# p "screening2 tickets  #{screening2.tickets_sold_for_screening()}"
+# p "screening3 tickets  #{screening3.tickets_sold_for_screening()}"
 # p screening3.count_tickets_sold_for_each_screening()
+screening_tickets_hash = {
+  'screening 1 tickets' => screening1.tickets_sold_for_screening(), 'screening 2 tickets' => screening2.tickets_sold_for_screening(),
+  'screening 3 tickets' => screening3.tickets_sold_for_screening()
+}
+p screening_tickets_hash.sort#.sort_by {|_key, value| value}.to_h
+
 
 
 
